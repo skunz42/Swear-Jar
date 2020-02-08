@@ -6,10 +6,11 @@ import time
 import speech_recognition as sr
 
 class Speech:
-    def __init__(self):
+    def __init__(self, db):
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
-        self.currAmt = 0.0
+
+        self.database = db
 
     def recognize_speech_from_mic(self):
 
@@ -45,5 +46,5 @@ class Speech:
 
         print("You said: " + guess["transcription"])
         if "test" in guess["transcription"]:
-            self.currAmt += 0.25
-        print("Curr Amt: $" + str(self.currAmt))
+            self.database.setProgress()
+        print("Curr Amt: $" + str(self.database.getProgress()))

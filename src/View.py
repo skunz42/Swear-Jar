@@ -5,6 +5,7 @@ import tkinter as tk
 import sys
 
 from Speech import Speech
+from DB import DB
 
 class View(tk.Frame):
     def __init__(self, master=None):
@@ -13,7 +14,8 @@ class View(tk.Frame):
         self.pack()
         self.setupWindow()
 
-        self.speech = Speech()
+        self.database = DB()
+        self.speech = Speech(self.database)
 
     def setupWindow(self):
         # Titles, etc
@@ -35,7 +37,8 @@ class View(tk.Frame):
         b.place(x=375, y=10, height=25, width=100)
 
     def quit(self):
+        self.database.writeDB();
         sys.exit()
 
     def donate(self):
-        print(":^)")
+        print(str(self.database.getProgress()))
