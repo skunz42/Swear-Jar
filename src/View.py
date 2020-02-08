@@ -4,12 +4,16 @@
 import tkinter as tk
 import sys
 
+from Speech import Speech
+
 class View(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
         self.pack()
         self.setupWindow()
+
+        self.speech = Speech()
 
     def setupWindow(self):
         # Titles, etc
@@ -22,12 +26,16 @@ class View(tk.Frame):
         b.pack()
         b.place(x=25, y=10, height=25, width=100)
 
+        b = tk.Button(self.master, text="Listen", command = lambda : self.speech.listen())
+        b.pack()
+        b.place(x=200, y=10, height=25,width=100)
+
         b = tk.Button(self.master, text="Donate", command = lambda : self.donate())
         b.pack()
         b.place(x=375, y=10, height=25, width=100)
 
     def quit(self):
-        print(sys.exit())
+        sys.exit()
 
     def donate(self):
         print(":^)")
