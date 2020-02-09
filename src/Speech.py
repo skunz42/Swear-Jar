@@ -11,6 +11,7 @@ class Speech:
         self.microphone = sr.Microphone()
 
         self.database = db
+        self.swears = ['test', 'shit', 'ass', 'hell', 'dam']
 
     def recognize_speech_from_mic(self):
 
@@ -33,10 +34,20 @@ class Speech:
 
         return response
 
-    def listen(self):
-        time.sleep(1)
+    def calculate(self, guess, label):
+        for w in self.swears:
+            num = guess["transcription"].count(w)
+            if num:
+                for i in range(num):
+                    self.database.setProgress()
+
+        txt = "$" + str("{0:.2f}".format(self.database.getProgress()))
+        label.config(text=txt)
+
+
+    def listen(self, label):
         for j in range(10):
-            print("Attempt " + str(j+1) + ".")
+            print("Now listening...")
             guess = self.recognize_speech_from_mic()
             if guess["transcription"]:
                 break
@@ -45,6 +56,5 @@ class Speech:
             print("I didn't catch that. What did you say?\n")
 
         print("You said: " + guess["transcription"])
-        if "test" in guess["transcription"]:
-            self.database.setProgress()
-        print("Curr Amt: $" + str(self.database.getProgress()))
+        self.calculate(guess, label)
+        print("Press the button again!")

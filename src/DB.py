@@ -20,6 +20,9 @@ class DB:
     def setProgress(self):
         self.prog += 0.25
 
+    def emptyJar(self):
+        self.prog = 0.0
+
     def writeDB(self):
         self.db.progress.update_one({
             'user': 'test'
