@@ -19,12 +19,12 @@ PyMongo
 
 ### Installation
 
-'''bash
+```bash
 pip install -r requirements.txt
-'''
+```
 
 ## Usage
 
-'''python
+```python
 python Driver.py
-'''
+```
