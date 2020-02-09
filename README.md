@@ -7,10 +7,15 @@ An electronic swear jar that helps out charity!
 ### Libraries needed:
 
 Tkinter
+
 Google Cloud Speech Recognition
+
 Python Image Library
+
 PayPal REST API
+
 PyMongo
+
 
 ### Installation
 
