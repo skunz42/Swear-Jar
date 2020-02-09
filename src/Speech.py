@@ -6,9 +6,11 @@ import time
 import speech_recognition as sr
 
 class Speech:
-    def __init__(self, db):
+    def __init__(self, db, lbl):
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
+
+        self.lbl = lbl
 
         self.database = db
         self.swears = ['test', 'shit', 'ass', 'hell', 'dam']
@@ -47,7 +49,6 @@ class Speech:
 
     def listen(self, label):
         for j in range(10):
-            print("Now listening...")
             guess = self.recognize_speech_from_mic()
             if guess["transcription"]:
                 break
@@ -56,5 +57,6 @@ class Speech:
             print("I didn't catch that. What did you say?\n")
 
         print("You said: " + guess["transcription"])
+        txt = "You said: " + guess["transcription"]
+        self.lbl.config(text=txt)
         self.calculate(guess, label)
-        print("Press the button again!")
