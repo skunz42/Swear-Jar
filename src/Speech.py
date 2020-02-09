@@ -13,10 +13,9 @@ class Speech:
         self.lbl = lbl
 
         self.database = db
-        self.swears = ['test', 'shit', 'ass', 'hell', 'dam']
+        self.swears = ['test', 'shit', 'ass', 'hell', 'dam', 'fuck']
 
     def recognize_speech_from_mic(self):
-
         with self.microphone as source:
             self.recognizer.adjust_for_ambient_noise(source)
             audio = self.recognizer.listen(source)

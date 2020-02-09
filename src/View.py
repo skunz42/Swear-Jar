@@ -20,7 +20,7 @@ class View(tk.Frame):
         self.updatelbl = tk.Label(self.master, text=txt)
         self.updatelbl.pack(side=tk.BOTTOM)
         #self.updatelbl.place(x=150, y=400)
-        self.updatelbl.config(font=("Arial", 18))
+        self.updatelbl.config(font=("Arial", 24))
 
         self.database = DB()
         self.speech = Speech(self.database, self.updatelbl)
@@ -31,45 +31,45 @@ class View(tk.Frame):
         txt = "$" + str("{0:.2f}".format(self.database.getProgress()))
         self.amtlb = tk.Label(self.master, text=txt)
         self.amtlb.pack()
-        self.amtlb.place(x=200, y=230)
-        self.amtlb.config(font=("Arial", 28, "bold"))
+        self.amtlb.place(x=350, y=500)
+        self.amtlb.config(font=("Arial", 32, "bold"))
 
     def setupWindow(self):
         # Titles, etc
         self.master.title('Swear Jar!')
-        self.master.geometry("500x400")
+        self.master.geometry("800x800")
         self.master.resizable(0,0)
         self.master.configure(background='white')
 
-        helv36 = tkFont.Font(family='Helvetica', size=14, weight=tkFont.BOLD)
+        helv36 = tkFont.Font(family='Helvetica', size=18, weight=tkFont.BOLD)
 
         # Image
         path = "../assets/jar.jpg"
         img = Image.open(path)
-        img = img.resize((200,200), Image.ANTIALIAS)
+        img = img.resize((400,400), Image.ANTIALIAS)
         map = ImageTk.PhotoImage(img)
         mpl = tk.Label(self.master, image=map)
         mpl.image=map
         mpl.pack()
-        mpl.place(x=150, y=150)
+        mpl.place(x=200, y=300)
 
         # Buttons
         b = tk.Button(self.master, text="Quit", font=helv36, bg='blue', command = lambda : self.quit())
         b.pack()
-        b.place(x=25, y=10, height=50, width=100)
+        b.place(x=50, y=25, height=75, width=150)
 
         b = tk.Button(self.master, text="Listen", font=helv36, bg='blue', command = lambda : self.speech.listen(self.amtlb))
         b.pack()
-        b.place(x=200, y=10, height=50, width=100)
+        b.place(x=325, y=25, height=75, width=150)
 
         b = tk.Button(self.master, text="Donate", font = helv36, bg='blue', command = lambda : self.donate())
         b.pack()
-        b.place(x=375, y=10, height=50, width=100)
+        b.place(x=585, y=25, height=75, width=150)
 
-        l = tk.Label(self.master, text="Try these words: [test, shit, hell, ass, damn]")
+        l = tk.Label(self.master, text="Try these words: [test, shit, hell, ass, damn, fuck]")
         l.pack()
-        l.place(x=10, y=90)
-        l.config(font=("Arial", 18))
+        l.place(x=100, y=175)
+        l.config(font=("Arial", 24))
 
     def quit(self):
         self.database.writeDB();
